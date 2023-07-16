@@ -5,7 +5,7 @@ import { privateKeyFromBits } from './privateKey.js';
 import { publicKeyHash } from './pubKeyHash.js';
 import { showTitle } from './utils.js';
 
-// Simula lançamento de uma moeda (0 ou 1) multiplas vezes. 
+// Entropia: Simula lançamento de uma moeda (0 ou 1) multiplas vezes. 
 function generateBits(n = 256) {
     let bits = '';
     for (let i = 1; i <= n; i++) {
@@ -21,18 +21,13 @@ function generateBits(n = 256) {
     return bits;
 }
 
-// Você também pode utilizar a função interna da lib crypto
-// const random = randomBytes(32);
-
+// Você também pode utilizar a função interna da lib crypto: const bits = randomBytes(32);
 const bits = generateBits();
+
 const privateKey = privateKeyFromBits(bits);
 const publicKey = calculateEC(privateKey);
 const pubKeyHash = publicKeyHash(publicKey)
 const address = base58check(pubKeyHash, VERSION.BTC_ADDR);
 
 showTitle('Bitcoin Address - Uncompressed');
-console.log(address)
-
-
-
-
+console.log(address);

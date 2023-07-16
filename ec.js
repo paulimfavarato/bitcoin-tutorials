@@ -2,13 +2,13 @@ import { showTitle, space } from './utils.js';
 import EC from 'elliptic';
 
 export function calculateEC(privKey) {
-    var ec = new EC.ec('secp256k1');
-    var key = ec.keyFromPrivate(privKey);
+    var ec = new EC.ec('secp256k1'); // gera um curva eliptica
+    var key = ec.keyFromPrivate(privKey); // gera par de chaves a partir da chave privada
 
     showTitle('Public key - Uncompressed');
-    const pubPoint = key.getPublic()
-    const hexPubPoint = pubPoint.encode('hex');
-    console.log(hexPubPoint);
+    const pubPoint = key.getPublic() // ponto na curva após multipicação k = K^G
+    const hexPubPoint = pubPoint.encode('hex'); 
+    console.log(hexPubPoint); // precisa começar com 04
     space();
 
     showTitle('Public key - Curve Points');
@@ -17,5 +17,5 @@ export function calculateEC(privKey) {
     console.table({ x, y })
     space();
 
-    return hexPubPoint;
+    return hexPubPoint; //retorna ponto na curva (hex). chave publica uncompressed
 }

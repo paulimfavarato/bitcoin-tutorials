@@ -1,7 +1,7 @@
 import { showTitle, space } from "./utils.js";
 
 export function privateKeyFromBits(bits) {
-    const arrayBits = bits.split(' ');
+    const arrayBits = bits.split(' '); 
     const arrayDecimal = arrayBits.map(byte => parseInt(byte, 2))
     const arrayHex = arrayBits.map(byte => parseInt(byte, 2).toString(16))
 
@@ -21,5 +21,5 @@ export function privateKeyFromBits(bits) {
     console.log(privateKey.toString('hex'));
     space();
 
-    return privateKey;
+    return privateKey; // retorna um buffer
 }
